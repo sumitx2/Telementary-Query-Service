@@ -45,6 +45,7 @@ vmp = {
         subnet_name="frontend-subnet"
         virtual_network_name="axion-vnet"
         pip_name="pip1"
+        nsg_name = "nsg-name-frontend"
     }
      vm2={
         vm_name = "axion-backend-vm"
@@ -54,6 +55,7 @@ vmp = {
         subnet_name="backend-subnet"
         virtual_network_name="axion-vnet"
         pip_name="pip2"
+        nsg_name = "nsg-name-backend"
     }
 
 }
@@ -79,5 +81,12 @@ pip3 ={
 }
 }
 
-
-
+postgresqlp = {
+    pgsql1 ={
+    server_name                   = "axion-postgresql"
+    resource_group_name           = "axion"
+    location                      = "centralindia"
+    administrator_login           = "rajpoot1992"
+    administrator_password        = "rajpoot@1992"
+    }
+}

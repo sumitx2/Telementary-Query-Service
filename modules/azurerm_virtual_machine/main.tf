@@ -1,3 +1,23 @@
+resource "azurerm_network_security_group" "nsg" {
+    for_each = var.vmm
+  name                = each.value.nsg_name
+  location            = each.value.location
+  resource_group_name = each.value.resource_group_name
+
+  security_rule {
+    name                       = "AllowSSH"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+
 resource "azurerm_network_interface" "NIC" {
     for_each = var.vmm
   name                = each.value.nic_name
@@ -12,7 +32,11 @@ resource "azurerm_network_interface" "NIC" {
   }
 }
 
-
+resource "azurerm_network_interface_security_group_association" "nsg_association" {
+  for_each = var.vmm
+  network_interface_id      = azurerm_network_interface.NIC[each.key].id
+  network_security_group_id = azurerm_network_security_group.nsg[each.key].id
+}
 
 resource "azurerm_linux_virtual_machine" "example" {
     for_each = var.vmm

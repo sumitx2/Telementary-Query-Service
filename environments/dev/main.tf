@@ -26,3 +26,9 @@ module "pip" {
     pipm = var.pipp
     depends_on = [ module.rg ]
 }
+
+module "sql" {
+    source = "../../modules/azurerm_postgresql_flexible_server"
+    depends_on = [ module.rg, module.subnet ]
+    postgresqlm = var.postgresqlp
+}
