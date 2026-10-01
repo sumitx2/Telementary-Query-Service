@@ -3,7 +3,7 @@ resource "azurerm_postgresql_flexible_server" "sql-server" {
   name                          = each.value.server_name
   resource_group_name           = each.value.resource_group_name
   location                      = each.value.location
-  version                       = "12"
+  version                       = "18"
   public_network_access_enabled = true
   administrator_login           = each.value.administrator_login
   administrator_password        = each.value.administrator_password

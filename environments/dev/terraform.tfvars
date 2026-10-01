@@ -73,12 +73,6 @@ pipp = {
   location ="centralindia"
   allocation_method = "Static"
 }
-pip3 ={
-    public_ip_name = "pip3"
-  resource_group_name="axion"
-  location ="centralindia"
-  allocation_method = "Static"
-}
 }
 
 postgresqlp = {
